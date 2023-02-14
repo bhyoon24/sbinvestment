@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 import json
+from time import sleep
 
 # Create your views here.
 def index(request):
@@ -97,7 +98,7 @@ def sms(request):
 
             def sendMany(data):
                 return requests.post(getUrl('/messages/v4/send-many'), headers=get_headers(apiKey, apiSecret),
-                                     json=data, verify=False)
+                                     json=data, timeout=3)
 
             # 한번 요청으로 1만건의 메시지 발송이 가능합니다.
             #if __name__ == '__main__':
