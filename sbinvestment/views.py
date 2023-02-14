@@ -91,13 +91,13 @@ def sms(request):
                 url = url + path
                 return url
 
-            def sendMany(data):
-                return requests.post('https://api.solapi.com/messages/v4/send-many', headers=get_headers(apiKey, apiSecret),
-                                     json=data)
-
             # def sendMany(data):
-            #     return requests.post(getUrl('/messages/v4/send-many'), headers=get_headers(apiKey, apiSecret),
+            #     return requests.post('https://api.solapi.com/messages/v4/send-many', headers=get_headers(apiKey, apiSecret),
             #                          json=data)
+
+            def sendMany(data):
+                return requests.post(getUrl('/messages/v4/send-many'), headers=get_headers(apiKey, apiSecret),
+                                     json=data, verify=False)
 
             # 한번 요청으로 1만건의 메시지 발송이 가능합니다.
             #if __name__ == '__main__':
