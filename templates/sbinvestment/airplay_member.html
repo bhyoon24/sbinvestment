@@ -1,0 +1,85 @@
+{% include 'partial/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block content %}
+<p></p>
+<h1>SB Members</h1>
+<p></p>
+<form  method="post">
+    {% csrf_token %}
+    <div class="col-12 mb-5">
+        <div>
+            <table class="table table-striped table-hover">
+                <tr>
+				  	<td>등록일</td><!-- 타임리프밸류를 사용하는이유는? 변수명으로 데이터 들고갈때 -->
+				  	<td><input type="date" name="fromDate" th:value="${aMonthAgoDate}"></td>
+				  	<td><input type="date" name="toDate" th:value="${nowDate}"></td>
+				  	<td>상태</td>
+				  	<td colspan="3">
+					  	<input type="radio" name="selection" value="0" checked="checked">전체
+					  	<input type="radio" name="selection" value="1" >무료
+					  	<input type="radio" name="selection" value="2" >유료
+				  	</td>
+	            </tr>
+
+            </table>
+        </div>
+        <div align="center">
+            <button class="btn btn-outline-secondary" type="submit">검색</button>
+        </div>
+    </div>
+</form>
+<!--
+<div class="row text-center" style="width: 100%">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="selection" id="exampleRadios1" value=0 checked>
+      <label class="form-check-label" for="exampleRadios1">
+        전체
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="selection" id="exampleRadios2" value=1>
+      <label class="form-check-label" for="exampleRadios2">
+        유료
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="selection" id="exampleRadios3" value=2>
+      <label class="form-check-label" for="exampleRadios3">
+        무료
+      </label>
+    </div>
+</div>
+-->
+<!--
+<div class="row">
+     <div class="col">
+         <button type="button" class="btn btn-outline-primary">Primary</button>
+         <button type="button" class="btn btn-outline-secondary">Secondary</button>
+         <button type="button" class="btn btn-outline-success">Success</button>
+     </div>
+</div>
+-->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">이름</th>
+            <th scope="col">전화번호</th>
+            <th scope="col">회원분류</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for datadisplay in members %}
+            <tr>
+                <td>{{datadisplay.id}}</td>
+                <td>{{datadisplay.fields.이름}}</td>
+                <td>{{datadisplay.fields.전화번호}}</td>
+                <td>{{datadisplay.fields.Status}}</td>
+            </tr>
+        {% endfor %}
+    <tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% include 'partial/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block content %}
+    <!-- contact -->
+    <div id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage text_align_center">
+                        <h2>SMS 전송</h2>
+                    </div>
+                </div>
+                <div class=" col-md-10 offset-md-1">
+                    <form id="request" class="main_form" action="" method="POST">
+                        {% csrf_token %}
+                       <div class="row">
+                           <div class="col-md-12">
+                                <input class="form-control form-control-lg" placeholder="종목"  id="stock" type="text" >
+                            </div>
+                            <div class="col-md-12 ">
+                                <input class="btn btn-danger btn-lg" type="button" value="매수" onclick="sendtxt1()">
+                                <input class="btn btn-primary btn-lg" type="button" value="매도" onclick="sendtxt2()">
+                                <input class="btn btn-info btn-lg" type="button" value="알림" onclick="sendtxt3()">
+                            </div>
+
+                            <div class="col-md-12">
+                                <input class="form-control form-control-lg" type="text" value="Message"  name="sendmsg">
+                            </div>
+
+                            <div class="col-md-12">
+                                <button class="btn btn-success" type="submit" id="button-addon2">Send</button>
+                            </div>
+                       </div>
+                    </form>
+                    <script>
+                        function sendtxt1(){
+                            var textStock = document.getElementById('stock');
+                            console.log(textStock)
+                            if(textStock != null){
+                               request.sendmsg.value=document.getElementById('stock').value + ' 현재가 [매수]';
+                            }
+                        }
+                        function sendtxt2(){
+                             var textStock = document.getElementById('stock');
+
+                             if(textStock != null){
+                                request.sendmsg.value=document.getElementById('stock').value + ' 현재가 [매도]';
+                            }
+                        }
+                        function sendtxt3(){
+                             var textStock = document.getElementById('stock');
+
+                             if(textStock != null){
+                                request.sendmsg.value='[알림] '+document.getElementById('stock').value;
+                            }
+                        }
+
+                    </script>
+                    <div class="row text-center" style="width: 100%">
+                        <div class="col-md-12">
+                            <h2>{{ error }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end contact -->
+{% endblock %}
