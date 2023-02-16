@@ -19,7 +19,7 @@ def sms(request):
             return_msg = "메세지를 확인하세요."
             # response['error'] = "메세지를 확인하세요."
         else:
-            print(send_msg)
+            #print(send_msg)
             member_type = 0     # 수정사항(유료인 경우 날라가도록 함)
             base_id = 'appssITu2KHnI0zUO'
             table_id = 'tblLGqfVdDK7C1YH3'
