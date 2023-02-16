@@ -20,7 +20,7 @@ def sms(request):
             # response['error'] = "메세지를 확인하세요."
         else:
             print(send_msg)
-            member_type = 0     # 수정사항
+            member_type = 0     # 수정사항(유료인 경우 날라가도록 함)
             base_id = 'appssITu2KHnI0zUO'
             table_id = 'tblLGqfVdDK7C1YH3'
             url = "https://api.airtable.com/v0/" + base_id + "/" + table_id
@@ -33,7 +33,7 @@ def sms(request):
             # 정상 select all
             airtable_response = response.json()
             airtable_records = airtable_response['records']
-            print(airtable_records)
+            #print(airtable_records)
             if member_type == 2:
                 members = airtable_records
             elif member_type == 0:  # 유료회원
@@ -112,17 +112,15 @@ def sms(request):
                 ]
             }
             sms_res = sendMany(data)
-            # print(json.dumps(sms_res.json(), indent=2, ensure_ascii=False))
             sms_response = sms_res.json()
-            # print("sms=====>", sms_response)
-            # print(sms_response['log'])
             log_list = sms_response['log']
+
             return_msg = []
             for k in log_list:
                 return_msg.append(k['message'])
             # print(return_msg)
             # response['error'] = '정상 발송되었습니다.'
-            # result = '정상 발송되었습니다.'
+            # return_msg = '정상 발송되었습니다.'
         return render(request, 'sbinvestment/sendsms.html', {'error': return_msg})
 
 def sb_member(request):

@@ -24,11 +24,14 @@
                                 <input class="form-control form-control-lg" placeholder="종목"  id="stock" type="text" >
                             </div>
                             <div class="col-md-12 ">
-                                <input class="btn btn-danger btn-lg" type="button" value="매수" onclick="sendtxt1()">
-                                <input class="btn btn-primary btn-lg" type="button" value="매도" onclick="sendtxt2()">
-                                <input class="btn btn-info btn-lg" type="button" value="알림" onclick="sendtxt3()">
+                                <input class="btn btn-danger btn-lg" type="button" value="매수(현금)" onclick="sendtxt1()">
+                                <input class="btn btn-danger btn-lg" type="button" value="매수(신용)" onclick="sendtxt2()">
                             </div>
-
+                            <div class="col-md-12 ">
+                                <input class="btn btn-primary btn-lg" type="button" value="매도(50%)" onclick="sendtxt3()">
+                                <input class="btn btn-primary btn-lg" type="button" value="매도(100%)" onclick="sendtxt4()">
+                                <input class="btn btn-info btn-lg" type="button" value="알림" onclick="sendtxt5()">
+                            </div>
                             <div class="col-md-12">
                                 <input class="form-control form-control-lg" type="text" value="Message"  name="sendmsg">
                             </div>
@@ -43,17 +46,31 @@
                             var textStock = document.getElementById('stock');
                             console.log(textStock)
                             if(textStock != null){
-                               request.sendmsg.value=document.getElementById('stock').value + ' 현재가 [매수]';
+                               request.sendmsg.value=document.getElementById('stock').value + ' 현재가 [매수]-현금';
                             }
                         }
                         function sendtxt2(){
-                             var textStock = document.getElementById('stock');
-
-                             if(textStock != null){
-                                request.sendmsg.value=document.getElementById('stock').value + ' 현재가 [매도]';
+                            var textStock = document.getElementById('stock');
+                            console.log(textStock)
+                            if(textStock != null){
+                               request.sendmsg.value=document.getElementById('stock').value + ' 현재가 [매수]-신용';
                             }
                         }
                         function sendtxt3(){
+                             var textStock = document.getElementById('stock');
+
+                             if(textStock != null){
+                                request.sendmsg.value=document.getElementById('stock').value + ' 50% [매도]';
+                            }
+                        }
+                        function sendtxt4(){
+                             var textStock = document.getElementById('stock');
+
+                             if(textStock != null){
+                                request.sendmsg.value=document.getElementById('stock').value + ' 100% [매도]';
+                            }
+                        }
+                        function sendtxt5(){
                              var textStock = document.getElementById('stock');
 
                              if(textStock != null){
