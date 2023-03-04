@@ -58,6 +58,8 @@ def sms(request):
                 members = [x for x in airtable_records if x['fields']['Status_Num'] == 0 or x['fields']['Status_Num'] == 1]
             elif member_type == 5:  # 무료회원
                 members = [x for x in airtable_records if x['fields']['Status_Num'] == 0 or x['fields']['Status_Num'] == 2]
+            elif member_type == 1:  # 관리자
+                members = [x for x in airtable_records if x['fields']['Status_Num'] == 0]
 
             phonelist = []
             for p in members:
