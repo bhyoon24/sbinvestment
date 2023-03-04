@@ -14,13 +14,31 @@ def sms(request):
         return render(request, 'sbinvestment/sendsms.html')
     elif request.method == 'POST':
         send_msg = request.POST.get('sendmsg')
-        # response = {}
+        check1 = request.POST.get('checkAdmin')
+        check2 = request.POST.get('checkCharge')
+        check3 = request.POST.get('checkFree')
+        member_type = 0  # 수정사항(유료인 경우 날라가도록 함)
+        # member_type = int(check1) + int(check2) + int(check3)
+        # print(member_type)
+        if check1 == '0':       # 관리자
+            member_type += 1
+        else:
+            member_type += 0
+        if check2 == '1':       # 유료회원
+            member_type += 2
+        else:
+            member_type += 0
+        if check3 == '2':       # 무료회원
+            member_type += 4
+        else:
+            member_type += 0
+
         if send_msg == '':
             return_msg = "메세지를 확인하세요."
             # response['error'] = "메세지를 확인하세요."
         else:
             #print(send_msg)
-            member_type = 0     # 수정사항(유료인 경우 날라가도록 함)
+
             base_id = 'appssITu2KHnI0zUO'
             table_id = 'tblLGqfVdDK7C1YH3'
             url = "https://api.airtable.com/v0/" + base_id + "/" + table_id
@@ -34,12 +52,12 @@ def sms(request):
             airtable_response = response.json()
             airtable_records = airtable_response['records']
             #print(airtable_records)
-            if member_type == 2:
+            if member_type == 7:
                 members = airtable_records
-            elif member_type == 0:  # 유료회원
-                members = [x for x in airtable_records if x['fields']['Status_Num'] == 0]
-            elif member_type == 1:  # 무료회원
-                members = [x for x in airtable_records if x['fields']['Status_Num'] == 1]
+            elif member_type == 3:  # 유료회원
+                members = [x for x in airtable_records if x['fields']['Status_Num'] == 0 or x['fields']['Status_Num'] == 1]
+            elif member_type == 5:  # 무료회원
+                members = [x for x in airtable_records if x['fields']['Status_Num'] == 0 or x['fields']['Status_Num'] == 2]
 
             phonelist = []
             for p in members:

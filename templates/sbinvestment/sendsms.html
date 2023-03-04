@@ -20,7 +20,25 @@
                     <form id="request" class="main_form" action="" method="POST">
                         {% csrf_token %}
                        <div class="row">
-                           <div class="col-md-12">
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="0" id="checkAdmin" checked name="checkAdmin">
+                              <label class="form-check-label" for="checkAdmin">
+                                관리자
+                              </label>
+                           </div>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="1" id="checkCharge" checked name="checkCharge">
+                              <label class="form-check-label" for="checkCharge">
+                                유료
+                              </label>
+                           </div>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="2" id="checkFree" name="checkFree">
+                              <label class="form-check-label" for="checkFree">
+                                무료
+                              </label>
+                           </div>
+                          <div class="col-md-12">
                                 <input class="form-control form-control-lg" placeholder="종목"  id="stock" type="text" >
                             </div>
                             <div class="col-md-12 ">
