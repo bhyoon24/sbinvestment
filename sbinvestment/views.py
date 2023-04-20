@@ -126,7 +126,7 @@ def sms(request):
                 'messages': [
                     {
                         'to': phonelist,
-                        'from': '01089391001',
+                        'from': '01021181857',
                         'text': '[SB인베스트먼트] ' + send_msg + '\n\n◆추천회원 가입하세요!! \nhttps://bit.ly/3wBI0BN\n◆투자자유의사항:투자에 대한 원금손실발생시 투자자 귀속'
                     }
                 ]
